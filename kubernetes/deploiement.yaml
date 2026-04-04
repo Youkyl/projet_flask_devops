@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: projet-devops
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: projet-devops
+  template:
+    metadata:
+      labels:
+        app: projet-devops
+    spec:
+      containers:
+      - name: projet-devops
+        image: projet-devops:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: FLASK_APP
+          value: "app"
+        - name: FLASK_ENV
+          value: "production"
