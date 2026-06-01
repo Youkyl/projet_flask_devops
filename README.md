@@ -99,4 +99,4 @@ L'application sera disponible sur:
 - Koffi Emmanuel Martin GAMISSO
 - NYADZI-EMMANUEL
 - Malik
-- Joy
+- Joy# Pipeline CI/CD opérationnel 🚀
