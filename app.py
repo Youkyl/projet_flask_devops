@@ -1,4 +1,5 @@
 from flask import Flask, redirect, request, session, url_for
+from prometheus_flask_exporter import PrometheusMetrics
 
 from .routes.auth import auth_bp
 from .routes.courses import courses_bp
@@ -11,6 +12,7 @@ from .routes.logs import logs_bp
 def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = "dev-secret-key"
+    metrics = PrometheusMetrics(app)
 
     app.register_blueprint(dashboard_bp, url_prefix="/dashboard")
     app.register_blueprint(students_bp)
@@ -25,6 +27,8 @@ def create_app():
             return None
 
         if request.endpoint.startswith("static"):
+            return None
+        if request.path == "/metrics":
             return None
 
         if request.endpoint.startswith("auth."):

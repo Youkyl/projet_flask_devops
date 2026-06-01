@@ -1,5 +1,4 @@
-version: '3.8'
-
+version: "3.8"
 services:
   web:
     build: .
@@ -8,6 +7,20 @@ services:
     environment:
       - FLASK_APP=app
       - FLASK_ENV=production
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
     volumes:
-      - .:/app
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
     restart: unless-stopped
