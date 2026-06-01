@@ -100,3 +100,4 @@ L'application sera disponible sur:
 - NYADZI-EMMANUEL
 - Malik
 - Joy# Pipeline CI/CD opérationnel 🚀
+# trigger build
