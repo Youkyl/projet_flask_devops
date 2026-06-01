@@ -26,9 +26,8 @@ pipeline {
         stage("Deploy") {
             steps {
                 echo "Deploiement..."
-                sh "docker stop projet-devops-current || true"
-                sh "docker rm projet-devops-current || true"
-                sh "docker run -d -p 5000:5000 --name projet-devops-current ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                sh "docker compose down || true"
+                sh "docker compose up -d --build"
             }
         }
     }
